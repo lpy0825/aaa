@@ -21,7 +21,7 @@
 <body>
 <center>
 
-    <fieldset class="layui-elem-field">
+    <fieldset class="layui-elem-field">哈哈哈
         <hr class="layui-bg-red"/>
         <img src="img/itaem.jpg" height="100px">
         <hr class="layui-bg-red"/>
