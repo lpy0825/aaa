@@ -54,4 +54,7 @@ public class Fmcontenttype {
         this.typeid = typeid;
         this.fmtype = fmtype;
     }
+
+    public Fmcontenttype() {
+    }
 }

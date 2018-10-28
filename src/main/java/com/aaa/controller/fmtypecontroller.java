@@ -66,10 +66,10 @@ public class fmtypecontroller {
     修改节目
      */
     @RequestMapping("update_fmtype")
-    public String update_fmtype(String type,Integer tid)
+    @ResponseBody
+    public void update_fmtype(String type,Integer tid)
     {
         int count=fmservice.update_fmtype(type,tid);
-        return "redirect:/fmtype/cate";
     }
 
     /*
@@ -79,6 +79,7 @@ public class fmtypecontroller {
     @ResponseBody
     public boolean delete_fmtype(int tid)
     {
+        System.out.println(tid);
         int del=fmservice.delete_fmtype(tid);
         if(del>0)
         {

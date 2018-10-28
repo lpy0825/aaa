@@ -91,7 +91,7 @@
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="jsp/cate2.jsp">
+                        <a _href="fmcontent/queryAllFmcontent">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>专辑管理</cite>
                         </a>

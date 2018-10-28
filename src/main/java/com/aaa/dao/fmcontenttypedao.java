@@ -4,6 +4,8 @@ import com.aaa.entity.Fmcontenttype;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
+
 @Mapper
 public interface fmcontenttypedao {
     /**
@@ -19,6 +21,10 @@ public interface fmcontenttypedao {
     @Select("select * from fmcontenttype")
     public List<Fmcontenttype> queryAllFmcontent();
 
+    /*查询专辑下面的节目*/
+    @Select("select fmcontenttype.tid,fmcontenttype.contenttype,fmtype.type from fmtype,fmcontenttype  where fmcontenttype.typeid =fmtype.tid and fmcontenttype.tid=#{param1}")
+    public List<Map<String,Object>> queryType(Integer tid );
+
     /**
      * 添加专辑类型
      */
@@ -29,9 +35,8 @@ public interface fmcontenttypedao {
     /**
      * 修改专辑类型
      */
-    @Update("update set fmcontenttype ")
-    public int update_fmcontenttype(@Param("contenttype")String contenttype,@Param("typeid") int typeid);
-
+    @Update("update  fmcontenttype set contenttype=#{contenttype},typeid=#{typeid} where tid=#{tid} ")
+    public int update_fmcontenttype(@Param("contenttype")String contenttype,@Param("typeid") Integer typeid,@Param("tid")Integer tid);
 
     /*
     * 删除专辑类型

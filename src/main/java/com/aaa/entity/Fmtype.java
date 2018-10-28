@@ -4,6 +4,7 @@ public class Fmtype {
     private int tid;
     private String type;
 
+
     public int getTid() {
         return tid;
     }
@@ -28,6 +29,11 @@ public class Fmtype {
                 '}';
     }
 
+    public Fmtype(int tid, String type) {
+        this.tid = tid;
+        this.type = type;
+    }
 
-
+    public Fmtype() {
+    }
 }

@@ -12,7 +12,7 @@ public interface fmtypedao {
     *按id查询节目类型
     */
     @Select("select * from fmtype where tid=#{tid}")
-    public List<Fmtype> find_tid(@Param("tid") int tid);
+    public List<Fmtype> find_tid(@Param("tid") Integer tid);
 
    /*
    *查询所有节目
@@ -30,11 +30,11 @@ public interface fmtypedao {
      */
 
     @Update("update fmtype set type=#{type} where tid=#{tid}")
-    public int update_fmtype(@Param("type")String type,@Param("tid") int tid);
+    public int update_fmtype(@Param("type")String type,@Param("tid") Integer tid);
 
     /*
      *删除节目类型
      */
     @Delete("delete from fmtype where tid=#{tid}")
-    public int delete_fmtype(@Param("tid") int tid);
+    public int delete_fmtype(@Param("tid") Integer tid);
 }
