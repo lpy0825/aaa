@@ -6,7 +6,9 @@ public class admin {
     private String aname;
     private String apassword;
     private String image;
-
+    private String email;
+    private String motto;
+    private String realname;
 
     public int getAid() {
         return aid;
@@ -40,11 +42,42 @@ public class admin {
         this.image = image;
     }
 
-    public admin(int aid, String aname, String apassword, String image) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public admin(int aid, String aname, String apassword, String image, String email, String motto, String realname) {
         this.aid = aid;
         this.aname = aname;
         this.apassword = apassword;
         this.image = image;
+        this.email = email;
+        this.motto = motto;
+        this.realname = realname;
+    }
+
+
+    public admin() {
     }
 
     @Override
@@ -54,6 +87,9 @@ public class admin {
                 ", aname='" + aname + '\'' +
                 ", apassword='" + apassword + '\'' +
                 ", image='" + image + '\'' +
+                ", email='" + email + '\'' +
+                ", motto='" + motto + '\'' +
+                ", realname='" + realname + '\'' +
                 '}';
     }
 }

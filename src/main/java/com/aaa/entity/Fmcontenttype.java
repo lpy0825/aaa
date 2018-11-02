@@ -2,8 +2,8 @@ package com.aaa.entity;
 
 public class Fmcontenttype {
     private Integer tid;
-    private String contenttype;
-    private Integer typeid;
+    private String contenttype;//专辑类型
+    private Integer typeid;//节目类型
     private Fmtype fmtype;
 
     public Integer getTid() {

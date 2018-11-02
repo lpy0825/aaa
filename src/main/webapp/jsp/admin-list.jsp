@@ -1,9 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+  String path = request.getContextPath();
+  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
-  <base href="http://localhost:8080/">
+    <base href="<%=basePath%>">
   <meta charset="UTF-8">
   <title>欢迎页面-X-admin2.0</title>
   <meta name="renderer" content="webkit">
@@ -31,68 +35,66 @@
 </div>
 <div class="x-body">
   <xblock>
-    <span class="x-right" style="line-height:40px">共有数据：${headcount } 条</span>
+    <span class="x-right" style="line-height:40px">共有数据：${count } 条</span>
   </xblock>
   <table class="layui-table">
     <thead>
     <tr>
       <th>编号</th>
       <th>用户名</th>
-      <th>密码</th>
-      <th>职位</th>
-      <th>修改时间</th>
-      <th>修改人编号</th>
-      <th>状态</th>
-      <th>操作</th></tr>
+      <th>手机号</th>
+      <th>邮箱</th>
+      <th>普通用户&VIP会员</th>
+      <th>主播&非主播</th>
+      <th>头像</th>
+      <th>签名</th>
+      <th>信誉度</th>
+      <th>审核状态</th>
+      <th>操作</th>
+    </tr>
     </thead>
     <tbody>
 
-    <c:forEach items="${userinfo}" var="u">
+    <c:forEach items="${userlist }" var="us">
       <tr>
-        <td>${u.userinfoid}</td>
-        <td>${u.userinfophone}</td>
-        <td>●●●●●●●</td>
-        <td>${u.pset.positionname}</td>
-        <td><fmt:formatDate value="${u.userinfouptime }" pattern="yyyy/MM/dd hh:mm:ss" /></td>
-        <c:choose>
-          <c:when test="${u.userinfoupid eq 0}">
-            <td>暂无修改</td>
-          </c:when>
-          <c:otherwise>
-            <td>${u.userinfoupid}</td>
-          </c:otherwise>
-        </c:choose>
+        <td>${us.fmuid}</td>
+        <td>${us.fmuname}</td>
+        <td>${us.fmuphone}</td>
+        <td>${us.fmemali}</td>
+        <td>${us.fmstate}</td>
+        <td>${us.fmanchor}</td>
+        <td><img src="image/${us.fmuserimg}" style="border-radius: 50%;height:70px;width:70px;"></td>
+        <td>${us.fmsignature}</td>
+        <td>${us.fmcredibilty}</td>
+        <td>${us.shenhe}</td>
 
         <c:choose>
-          <c:when test="${u.userinfostate eq 0}">
+          <c:when test="${us.BP eq 1}">
             <td class="td-status">
               <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>
             </td>
           </c:when>
-          <c:when test="${u.userinfostate eq 1}">
+          <c:when test="${us.BP eq 0}">
             <td class="td-status">
               <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>
             </td>
           </c:when>
         </c:choose>
         <td class="td-manage">
-          <c:if test="${u.userinfostate eq 1}">
-            <a onclick="member_stop(this,${u.userinfoid})" href="javascript:;"  title="启用">
+          <c:if test="${us.BP eq 0}">
+            <a onclick="member_stop(this,${us.fmuid})" href="javascript:;"  title="启用">
               <i class="layui-icon">&#xe601;</i>
             </a>
           </c:if>
-          <c:if test="${u.userinfostate eq 0}">
-            <a onclick="member_stop(this,${u.userinfoid})" href="javascript:;"  title="停用">
+          <c:if test="${us.BP eq 1}">
+            <a onclick="member_stop(this,${us.fmuid})" href="javascript:;"  title="停用">
               <i class="layui-icon">&#xe601;</i>
             </a>
           </c:if>
 
         </td>
       </tr>
-
     </c:forEach>
-
-
 
     </tbody>
   </table>
@@ -119,11 +121,11 @@
         if($(obj).attr('title')=='停用'){
             layer.confirm('确认要停用吗？',function(index){
                 $.ajax({
-                    url:'userinfo/update_userinfostate',
+                    url:'fmuser/update_fmuser',
                     type:'post',
                     data:{
-                        userinfoid:id,
-                        userinfostate:1
+                        fmuid:id,
+                        bp:0
                     },
                     success:function(data){
                         $(obj).attr('title','启用')
@@ -136,11 +138,11 @@
         }else{
             layer.confirm('确认要启用吗？',function(index){
                 $.ajax({
-                    url:'userinfo/update_userinfostate',
+                    url:'fmuser/update_fmuser',
                     type:'post',
                     data:{
-                        userinfoid:id,
-                        userinfostate:0
+                        fmuid:id,
+                        bp:1
                     },
                     success:function(data){
                         $(obj).attr('title','停用')

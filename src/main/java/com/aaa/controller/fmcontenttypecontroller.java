@@ -103,7 +103,6 @@ public class fmcontenttypecontroller {
     @RequestMapping("queryType")
     public String queryType(Integer tid,Model model)
     {
-        System.out.println(tid);
         List<Map<String,Object>> list=fmcontservice.queryType(tid);
         List<Fmtype> llist=fmtypeservice.queryAllFMtype();
         List<Fmcontenttype> list1=fmcontservice.queryByid(tid);

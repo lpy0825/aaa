@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
-    <base href="http://localhost:8080/">
+    <base href="<%=basePath%>">
     <meta charset="utf-8"/>
     <title>IconFont</title>
     <link rel="stylesheet" href="./CSS/font.css">

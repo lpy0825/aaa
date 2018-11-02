@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html lang="en">
     <head>
-        <base href="http://localhost:8080/">
+        <base href="<%=basePath%>">
         <meta charset="UTF-8">
         <title>后台登录-X-admin2.0</title>
         <meta name="renderer" content="webkit|ie-comp|ie-stand">

@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
     <head>
-        <base href="http://localhost:8080/">
+        <base href="<%=basePath%>">
         <meta charset="UTF-8">
         <title>欢迎页面-X-admin2.0</title>
         <meta name="renderer" content="webkit">
@@ -15,7 +21,7 @@
     <body>
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">${userinfophone[0].userinfophone}</span><span class="presenttime">！</span>
+            <span class="x-red">${aname[0].aname}</span><span class="presenttime">！</span>
         </blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
@@ -28,44 +34,44 @@
                                     <ul class="layui-row layui-col-space10 layui-this">
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>节目数量</h3>
                                                 <p>
-                                                    <cite>66</cite></p>
+                                                    <cite>${count1}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>会员数</h3>
+                                                <h3>专辑数量</h3>
                                                 <p>
-                                                    <cite>12</cite></p>
+                                                    <cite>${count2}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>回复数</h3>
+                                                <h3>用户数量</h3>
                                                 <p>
-                                                    <cite>99</cite></p>
+                                                    <cite>${count3}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>商品数</h3>
+                                                <h3>微博认证数量</h3>
                                                 <p>
-                                                    <cite>67</cite></p>
+                                                    <cite>${count4}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>个人认证数量</h3>
                                                 <p>
-                                                    <cite>67</cite></p>
+                                                    <cite>${count5}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>机构认证数量</h3>
                                                 <p>
-                                                    <cite>6766</cite></p>
+                                                    <cite>${count6}</cite></p>
                                             </a>
                                         </li>
                                     </ul>
@@ -144,12 +150,11 @@
                     <tbody>
                         <tr>
                             <th>版权所有</th>
-                            <td>xxxxx(xxxx)
-                                <a href="http://www.xxx.com/" class='x-a' target="_blank">访问官网</a></td>
+                            <td>xxxxx(xxxx)</td>
                         </tr>
                         <tr>
                             <th>开发者</th>
-                            <td>马志斌(113664000@qq.com)</td></tr>
+                            <td>lpy(40828442@qq.com)</td></tr>
                     </tbody>
                 </table>
             </div>

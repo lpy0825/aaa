@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html lang="en">
 <head>
-    <base href="http://localhost:8080/">
+    <base href="<%=basePath%>">
 	<meta charset="UTF-8">
 	<title>西瓜FM</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -15,7 +19,10 @@
     <script src="/js/jquery-3.1.1.js"></script>
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-
+    <style>
+        #time{
+            float:right;
+    </style>
 </head>
 <body>
     <!-- 顶部开始 -->
@@ -30,14 +37,14 @@
           <li class="layui-nav-item">
             <a href="javascript:;">${aname[0].aname}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+              <dd><a onclick="x_admin_show('个人信息','admin/queryadmin')">个人信息</a></dd>
               <dd><a href="jsp/login.jsp">退出</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+          <li class="layui-nav-item to-index">⌚当前时间:<div id="time"></div></li>
         </ul>
-        
+
     </div>
     <!-- 顶部结束 -->
     <!-- 中部开始 -->
@@ -53,7 +60,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="jsp/member-list.jsp">
+                        <a _href="fmuser/queryfmuser">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>用户列表</cite>
                         </a>
@@ -101,14 +108,30 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
-                    <cite>城市联动</cite>
+                    <cite>认证管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="jsp/city.jsp">
+                        <a _href="fmpersonal/queryAllFMpersonal">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>三级地区联动</cite>
+                            <cite>个人认证</cite>
+                        </a>
+                    </li >
+                </ul>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="fmmechannism/queryFMmechannism">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>企业认证</cite>
+                        </a>
+                    </li >
+                </ul>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="fmweibo/queryAllweibo">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>名人认证</cite>
                         </a>
                     </li >
                 </ul>
@@ -231,7 +254,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='/userinfo/find_ALL' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='admin/queryAlltype' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>
@@ -244,4 +267,22 @@
         <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>  
     </div>
 </body>
+<script type="text/javascript">
+    setInterval(function(){
+        var time=new Date();
+        var year=time.getFullYear(); //获取年份
+        var month=time.getMonth()+1; //获取月份
+        var day=time.getDate();  //获取日期
+        var hour=checkTime(time.getHours());  //获取时
+        var minite=checkTime(time.getMinutes()); //获取分
+        var second=checkTime(time.getSeconds()); //获取秒
+        /****当时、分、秒、小于10时，则添加0****/
+        function checkTime(i){
+            if(i<10) return "0"+i;
+            return i;
+        }
+        var box=document.getElementById("time");
+        box.innerHTML=year+"年"+month+"月"+day+"日 "+hour+":"+minite+":"+second;
+    },1000);   //setInterval(fn,i) 定时器，每隔i秒执行fn
+</script>
 </html>

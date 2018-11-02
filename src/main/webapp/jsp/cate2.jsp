@@ -1,9 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
-    <base href="http://localhost:8080/">
+    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>专辑</title>
     <meta name="renderer" content="webkit">
@@ -39,7 +43,7 @@
         </form>
     </div>
     <xblock>
-        <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('编辑','jsp/admin-edit.jsp')" ><i class="layui-icon">&#xe642;</i>添加子栏目</button>
+
         <span class="x-right" style="line-height:40px">共有数据：${count1} 条</span>
     </xblock>
     <table class="layui-table layui-form">
