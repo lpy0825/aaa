@@ -25,6 +25,10 @@ public interface FMuserdao {
     public int update_fmuser(@Param("fmuid") int fmuid,@Param("bp")int BP);
 
 
-
+    /*
+    修改审核状态
+     */
+    @Update("update fmuser set shenhe=#{shenhe} where Fmuid=#{fmuid}")
+    public int update_shenhe(@Param("fmuid") int fmuid,@Param("shenhe") int shenhe);
 
 }

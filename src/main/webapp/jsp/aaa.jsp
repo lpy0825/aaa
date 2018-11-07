@@ -63,8 +63,8 @@
         var song = [
             {
                 'cover' : './images/cover.jpg',
-                'src' : 'http://jq22.qiniudn.com/the.mp3',
-                'title' : 'the xx'
+                'src' : '‪G:\\CloudMusic\\JC - 说散就散.mp3',
+                'title' : '说散就散'
             },
             {
                 'cover' : './images/cover2.jpg',
@@ -76,16 +76,7 @@
                 'src' : 'http://so1.111ttt.com:8282/2015/1/10m/31/103311642007.m4a?tflag=1494769515&pin=26fa27d88422f6adb1fbca3f0f17333e&ip=114.233.172.33#.mp3',
                 'title' : '再见 - 邓紫棋'
             },
-            {
-                'cover' : './images/cover3.jpg',
-                'src' : 'http://so1.111ttt.com:8282/2017/1/05m/09/298092042172.m4a?tflag=1494768586&pin=f8d0e2e08864846460002b12768a9267&ip=114.233.172.33#.mp3',
-                'title' : '最后一次 - 庄心妍'
-            },
-            {
-                'cover' : './images/cover1.jpg',
-                'src' : 'http://so1.111ttt.com:8282/2017/1/05m/09/298092036393.m4a?tflag=1494768868&pin=9a24cbf7571cb3524af1d6c883916169&ip=114.233.172.33#.mp3',
-                'title' : '远走高飞 - 金志文、徐佳莹'
-            }
+
         ];
 
         var audioFn = audioPlay({

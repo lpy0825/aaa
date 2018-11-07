@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -35,11 +36,18 @@
         </ul>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">${aname[0].aname}</a>
-            <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','admin/queryadmin')">个人信息</a></dd>
-              <dd><a href="jsp/login.jsp">退出</a></dd>
-            </dl>
+              <c:if test="${empty aname[0].aname}">
+
+              </c:if>
+              <c:if test="${ not empty aname[0].aname}">
+                  <a href="javascript:;" id="adname">${aname[0].aname}</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a onclick="x_admin_show('个人信息','admin/queryadmin?aid=${aname[0].aid}')">个人信息</a></dd>
+                      <dd><a href="jsp/login.jsp">退出</a></dd>
+                  </dl>
+              </c:if>
+
+          </li>
           </li>
           <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
           <li class="layui-nav-item to-index">⌚当前时间:<div id="time"></div></li>
@@ -98,7 +106,7 @@
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="fmcontent/queryAllFmcontent">
+                        <a _href="fmcontent/queryctype">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>专辑管理</cite>
                         </a>
@@ -113,7 +121,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="fmpersonal/queryAllFMpersonal">
+                        <a _href="fmpersonal/queryFMpersonalsh">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人认证</cite>
                         </a>
@@ -121,7 +129,7 @@
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="fmmechannism/queryFMmechannism">
+                        <a _href="fmmechannism/queryFMmechannismshenhe">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>企业认证</cite>
                         </a>
@@ -129,7 +137,7 @@
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="fmweibo/queryAllweibo">
+                        <a _href="fmweibo/queryAllweibosh">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>名人认证</cite>
                         </a>
@@ -267,6 +275,9 @@
         <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>  
     </div>
 </body>
+<script>
+
+</script>
 <script type="text/javascript">
     setInterval(function(){
         var time=new Date();

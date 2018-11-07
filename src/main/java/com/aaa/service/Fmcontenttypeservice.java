@@ -54,8 +54,20 @@ public class Fmcontenttypeservice {
         return fmcontdao.delete_fmcontenttype(tid);
     }
 
+
+    /*
+     *查询专辑下的节目
+     */
     public List<Map<String,Object>> queryType(Integer tid)
     {
         return fmcontdao.queryType(tid);
+    }
+
+    /*
+    查询专辑下面的节目
+    */
+    public List<Map<String,Object>> queryctype()
+    {
+        return  fmcontdao.queryctype();
     }
 }

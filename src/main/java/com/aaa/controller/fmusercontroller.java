@@ -2,6 +2,8 @@ package com.aaa.controller;
 
 import com.aaa.entity.FMuser;
 import com.aaa.service.Fmuserservice;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,25 +21,33 @@ public class fmusercontroller {
     Fmuserservice userservice;
 
     /**
-     * 查询所有前台用户
+     * 分页查询所有前台用户
      * @param model
      * @return
      */
     @RequestMapping("queryfmuser")
-    public String queryfmuser(Model model)
+    public String queryfmuser(Integer pageindex , Model model)
     {
+        if(pageindex==null)
+        {
+            pageindex=1;
+        }
+        Page startPage= PageHelper.startPage(pageindex,5);
         List<FMuser> list=userservice.queryfmuser();
-        int count=list.size();
+        int count=userservice.queryfmuser().size();
         model.addAttribute("count",count);
         model.addAttribute("userlist",list);
+        model.addAttribute("pages",pageindex);
         return "admin-list";
     }
 
+    /*
+    用户禁用启用
+     */
     @RequestMapping("update_fmuser")
     @ResponseBody
     public boolean update_fmuser(int fmuid,int bp)
     {
-        System.out.println("111");
         int count=userservice.update_fmuser(fmuid,bp);
         if(count>0)
         {
@@ -49,4 +59,21 @@ public class fmusercontroller {
         }
     }
 
+    /*
+    修改审核状态
+     */
+
+    @RequestMapping("update_shenhe")
+    public String update_shenhe(int fmuid,int shenhe)
+    {
+        int count=userservice.update_shenhe(fmuid,shenhe);
+        if(count>0){
+            if(shenhe==0){
+                return "verifyno";
+            }else{
+                return "verifyok";
+            }
+        }
+        return "500";
+    }
 }

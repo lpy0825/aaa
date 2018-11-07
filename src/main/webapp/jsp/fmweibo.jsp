@@ -35,7 +35,7 @@
 </div>
 <div class="x-body">
     <xblock>
-        <span class="x-right" style="line-height:40px">共有数据：${weibocount } 条</span>
+        <span class="x-right" style="line-height:40px">共有：${weibocountsh } 条数据未审核</span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -54,7 +54,7 @@
         </thead>
         <tbody>
 
-        <c:forEach items="${weibolsit }" var="wb">
+        <c:forEach items="${weibolsitsh }" var="wb">
             <tr>
                 <td>${wb.wid}</td>
                 <td>${wb.wname}</td>
@@ -62,11 +62,11 @@
                 <td>${wb.wauth}</td>
                 <td>${wb.eid}</td>
                 <td><img src="image/${wb.eimage}" style="border-radius: 50%;height:70px;width:70px;"></td>
-                <td>${wb.fmuid}</td>
-                <td>${wb.fmaid}</td>
+                <td>${wb.Fmuname}</td>
+                <td>${wb.Authentication}</td>
                 <td>${wb.ename}</td>
                 <td class="td-manage">
-                    <a title="查看"  onclick="x_admin_show('编辑','jsp/bbb.jsp')" href="javascript:;">
+                    <a title="查看"  onclick="x_admin_show('编辑','fmweibo/queryweibo?wid=${wb.wid}')" href="javascript:;">
                         <i class="layui-icon">&#xe63c;</i>
                     </a>
                 </td>

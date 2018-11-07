@@ -19,11 +19,18 @@
   <script src="/js/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
   <script type="text/javascript" src="./js/xadmin.js"></script>
+  <script type="text/javascript" src="./js/jqPaginator.js"></script>
   <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
   <!--[if lt IE 9]>
   <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
   <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">
+    .active {
+      background-color: #1AAD19 !important;
+      color: white !important;
+    }
+  </style>
 </head>
 
 <body class="layui-anim layui-anim-up">
@@ -61,12 +68,35 @@
         <td>${us.fmuname}</td>
         <td>${us.fmuphone}</td>
         <td>${us.fmemali}</td>
-        <td>${us.fmstate}</td>
-        <td>${us.fmanchor}</td>
+        <c:choose>
+          <c:when test="${us.fmstate eq 0}">
+            <td>普通用户</td>
+          </c:when>
+          <c:when test="${us.fmstate eq 1}">
+            <td>会员用户</td>
+          </c:when>
+        </c:choose>
+
+        <c:choose>
+          <c:when test="${us.fmanchor eq 0 }">
+            <td>非主播</td>
+          </c:when>
+          <c:when test="${us.fmanchor eq 1 }">
+            <td>主播</td>
+          </c:when>
+        </c:choose>
         <td><img src="image/${us.fmuserimg}" style="border-radius: 50%;height:70px;width:70px;"></td>
         <td>${us.fmsignature}</td>
         <td>${us.fmcredibilty}</td>
-        <td>${us.shenhe}</td>
+
+        <c:choose>
+          <c:when test="${us.shenhe eq 1}">
+            <td>通过</td>
+          </c:when>
+          <c:when test="${us.shenhe eq 0}">
+            <td>未通过</td>
+          </c:when>
+        </c:choose>
 
         <c:choose>
           <c:when test="${us.BP eq 1}">
@@ -95,15 +125,18 @@
         </td>
       </tr>
     </c:forEach>
-
     </tbody>
   </table>
-
+</div>
+<div id="pageDiv" class="layui-box layui-laypage layui-laypage-default">
 
 </div>
+
 <script>
     layui.use('laydate', function(){
         var laydate = layui.laydate;
+
+
 
         //执行一个laydate实例
         laydate.render({
@@ -115,6 +148,7 @@
             elem: '#end' //指定元素
         });
     });
+
 
     /*用户-停用*/
     function member_stop(obj,id){
@@ -154,6 +188,30 @@
             });
         }
     }
+</script>
+
+<script>
+    $(function () {
+        $(".layui-disabled").attr("href","javacript:void(0)");
+    });
+
+    layui.use(['form'], function () {
+        form = layui.form;
+
+    });
+    $('#pageDiv').jqPaginator({
+        totalCounts: ${count},
+        pageSize: 5,
+        visiblePages: 5,
+        currentPage: ${pages},
+        disableClass: 'layui-disabled',
+        first: '<a class="layui-laypage-prev" href="fmuser/queryfmuser?pageindex=1">首页</a>',
+        prev: '<a class="layui-laypage-prev" href="fmuser/queryfmuser?pageindex={{page}}">上一页</a>',
+        next: '<a class="layui-laypage-prev" href="fmuser/queryfmuser?pageindex={{page}}">下一页</a>',
+        last: '<a class="layui-laypage-prev" href="fmuser/queryfmuser?pageindex={{totalPages}}">尾页</a>',
+        page: '<a class="layui-laypage-prev" href="fmuser/queryfmuser?pageindex={{page}}">{{page}}</a>',
+        activeClass: 'active'
+    });
 </script>
 </body>
 

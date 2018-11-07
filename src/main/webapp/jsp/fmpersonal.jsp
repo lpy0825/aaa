@@ -35,7 +35,7 @@
 </div>
 <div class="x-body">
     <xblock>
-        <span class="x-right" style="line-height:40px">共有数据：${percount } 条</span>
+        <span class="x-right" style="line-height:40px">共有:${percountsh }条数据未审核</span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -51,16 +51,16 @@
         </thead>
         <tbody>
 
-        <c:forEach items="${perlist }" var="per">
+        <c:forEach items="${perlistsh }" var="per">
             <tr>
                 <td>${per.pid}</td>
                 <td>${per.name}</td>
                 <td>${per.eid}</td>
                 <td><img src="image/${per.eimage}" style="border-radius: 50%;height:70px;width:70px;"></td>
-                <td>${per.fmuid}</td>
-                <td>${per.fmaid}</td>
+                <td>${per.Fmuname}</td>
+                <td>${per.Authentication}</td>
                 <td class="td-manage">
-                    <a title="查看"  onclick="x_admin_show('编辑','jsp/bbb.jsp')" href="javascript:;">
+                    <a title="查看"  onclick="x_admin_show('编辑','fmpersonal/queryPid?pid=${per.pid}')" href="javascript:;">
                         <i class="layui-icon">&#xe63c;</i>
                     </a>
                 </td>

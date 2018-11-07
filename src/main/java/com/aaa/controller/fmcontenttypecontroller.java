@@ -4,6 +4,8 @@ import com.aaa.entity.Fmcontenttype;
 import com.aaa.entity.Fmtype;
 import com.aaa.service.Fmcontenttypeservice;
 import com.aaa.service.Fmtypeservice;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,5 +112,24 @@ public class fmcontenttypecontroller {
         model.addAttribute("llist",llist);
         model.addAttribute("list1",list1);
         return  "edit_fmcontenttype";
+    }
+
+    /*
+    分页查询所有专辑
+     */
+    @RequestMapping("queryctype")
+    public String queryctype (Integer pageindex, Model model)
+    {
+        if(pageindex ==null)
+        {
+            pageindex=1;
+        }
+        Page startPage= PageHelper.startPage(pageindex,5);
+        List<Map<String,Object>> list1=fmcontservice.queryctype();
+        int count=fmcontservice.queryAllFmcontent().size();
+        model.addAttribute("count1",count);
+        model.addAttribute("ctypelist",list1);
+        model.addAttribute("pages",pageindex);
+        return  "cate2";
     }
 }

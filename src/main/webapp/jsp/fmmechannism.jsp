@@ -35,7 +35,7 @@
 </div>
 <div class="x-body">
     <xblock>
-        <span class="x-right" style="line-height:40px">共有数据：${mecount } 条</span>
+        <span class="x-right" style="line-height:40px">共有:${mecountsh } 数据未审核</span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -54,7 +54,7 @@
         </thead>
         <tbody>
 
-        <c:forEach items="${melist }" var="me">
+        <c:forEach items="${melistsh }" var="me">
             <tr>
                 <td>${me.mid}</td>
                 <td>${me.mname}</td>
@@ -63,10 +63,10 @@
                 <td>${me.eid}</td>
                 <td>${me.ename}</td>
                 <td><img src="image/${me.eimage}" style="border-radius: 50%;height:70px;width:70px;"></td>
-                <td>${me.fmuid}</td>
-                <td>${me.fmaid}</td>
+                <td>${me.Fmuname}</td>
+                <td>${me.Authentication}</td>
                 <td class="td-manage">
-                    <a title="查看"  onclick="x_admin_show('编辑','jsp/bbb.jsp')" href="javascript:;">
+                    <a title="查看"  onclick="x_admin_show('编辑','fmmechannism/queryMid?mid=${me.mid}')" href="javascript:;">
                         <i class="layui-icon">&#xe63c;</i>
                     </a>
                 </td>

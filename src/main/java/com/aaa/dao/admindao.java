@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface admindao {
@@ -19,8 +20,8 @@ public interface admindao {
     /**
      * 查询所有管理员
      */
-    @Select("select * from admin")
-    public List<admin> queryadmin();
+    @Select(" select * from  admin where aid =#{aid} ")
+    public List<Map<String,Object>>queryadmin(@Param("aid") int aid);
 
     /**
      * 修改管理员信息

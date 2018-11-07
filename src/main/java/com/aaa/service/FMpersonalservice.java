@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FMpersonalservice {
@@ -17,9 +18,26 @@ public class FMpersonalservice {
     /*
     查询所有个人认证
      */
-    public List<FMpersonal> queryAllFMpersonal()
+    public List<Map<String,Object>> queryAllFMpersonal()
     {
         return perdao.queryFMpersonal();
+    }
+
+    /*
+    按ID查询
+     */
+    public List<Map<String,Object>> queryPid(Integer pid)
+    {
+        return perdao.queryPid(pid);
+    }
+
+
+    /*
+    查询所有未审核
+     */
+    public List<Map<String,Object>> queryFMpersonalsh()
+    {
+        return perdao.queryFMpersonalsh();
     }
 
 }

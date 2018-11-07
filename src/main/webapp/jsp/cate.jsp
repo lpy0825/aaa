@@ -19,10 +19,18 @@
     <script src="/js/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/jqPaginator.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <![endif]-->
+    <style type="text/css">
+      .active {
+        background-color: #1AAD19 !important;
+        color: white !important;
+      }
+    </style>
   </head>
+
   
   <body>
     <div class="x-nav">
@@ -68,9 +76,10 @@
         </tbody>
       </table>
     </div>
-    <style type="text/css">
-      
-    </style>
+    <div id="pageDiv" class="layui-box layui-laypage layui-laypage-default">
+
+    </div>
+
     <script>
       layui.use(['form'], function(){
         form = layui.form;
@@ -92,6 +101,29 @@
           })
           });
       }
+    </script>
+
+    <script>
+        $(function () {
+            $(".layui-disabled").attr("href","javacript:void(0)");
+        });
+        layui.use(['form'], function () {
+            form = layui.form;
+
+        });
+        $('#pageDiv').jqPaginator({
+            totalCounts: ${count},
+            pageSize: 5,
+            visiblePages: 5,
+            currentPage: ${pages},
+            disableClass: 'layui-disabled',
+            first: '<a class="layui-laypage-prev" href="fmtype/queryAllFMtype?pageindex=1">首页</a>',
+            prev: '<a class="layui-laypage-prev" href="fmtype/queryAllFMtype?pageindex={{page}}">上一页</a>',
+            next: '<a class="layui-laypage-prev" href="fmtype/queryAllFMtype?pageindex={{page}}">下一页</a>',
+            last: '<a class="layui-laypage-prev" href="fmtype/queryAllFMtype?pageindex={{totalPages}}">尾页</a>',
+            page: '<a class="layui-laypage-prev" href="fmtype/queryAllFMtype?pageindex={{page}}">{{page}}</a>',
+            activeClass: 'active'
+        });
     </script>
   </body>
 

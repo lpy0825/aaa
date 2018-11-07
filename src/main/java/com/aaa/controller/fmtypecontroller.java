@@ -3,6 +3,8 @@ package com.aaa.controller;
 import com.aaa.entity.Fmtype;
 import com.aaa.entity.admin;
 import com.aaa.service.Fmtypeservice;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,15 +33,21 @@ public class fmtypecontroller {
         return "edit_fmtype";
     }
     /*
-        查询所有节目
-         */
+        分页查询所有节目
+      */
     @RequestMapping("/queryAllFMtype")
-    public String queryAllFMtype(Model model)
+    public String queryAllFMtype(Integer pageindex,Model model)
     {
+        if(pageindex==null)
+        {
+            pageindex=1;
+        }
+        Page startPage= PageHelper.startPage(pageindex,5);
         List<Fmtype> list=fmservice.queryAllFMtype();
-        int count=list.size();
+        int count=fmservice.queryAllFMtype().size();
         model.addAttribute("count",count);
         model.addAttribute("typelist",list);
+        model.addAttribute("pages",pageindex);
         return "cate";
     }
 

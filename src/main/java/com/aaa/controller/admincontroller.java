@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -59,15 +60,15 @@ public class admincontroller {
     }
 
     /**
-     * 查询全部管理员
+     * id查询管理员
      * @param model
      * @return
      */
     @RequestMapping("queryadmin")
-    public String  queryadmin(Model model)
+    public String  queryadmin(Integer aid,Model model)
     {
 
-        List<admin> list=aservice.queryadmin();
+        List<Map<String,Object>> list=aservice.queryadmin(aid);
         model.addAttribute("list",list);
         return "Mycenter";
     }
@@ -113,9 +114,9 @@ public class admincontroller {
         List<Fmtype> list1=typeservice.queryAllFMtype();
         List<Fmcontenttype> list2=conttypeservice.queryAllFmcontent();
         List<FMuser> list3=userservice.queryfmuser();
-        List<FMweibo> list4=weiboservice.queryAllFMweibo();
-        List<FMpersonal> list5=perservice.queryAllFMpersonal();
-        List<FMmechannism> list6=meservice.queryFMmechannism();
+        List<Map<String,Object>> list4=weiboservice.queryAllweibo();
+        List<Map<String,Object>> list5=perservice.queryAllFMpersonal();
+        List<Map<String,Object>> list6=meservice.queryFMmechannism();
 
         int count1=list1.size();//节目总数
         int count2=list2.size();//专辑总和

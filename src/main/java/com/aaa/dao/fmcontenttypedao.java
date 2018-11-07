@@ -43,4 +43,12 @@ public interface fmcontenttypedao {
      */
     @Delete("delete from fmcontenttype where tid=#{tid}")
     public int delete_fmcontenttype(@Param("tid")Integer tid);
+
+    /*
+    查询专辑下的节目
+     */
+    @Select("select c.tid,c.contenttype,t.type from fmtype t,fmcontenttype c where c.typeid = t.tid")
+    public List<Map<String,Object>> queryctype();
+
+
 }

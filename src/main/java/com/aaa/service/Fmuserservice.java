@@ -30,4 +30,14 @@ public class Fmuserservice {
         return userdao.update_fmuser(fmuid,bp);
     }
 
+
+    /*
+    修改审核
+     */
+    public int update_shenhe(int fmuid,int shenhe)
+    {
+        return  userdao.update_shenhe(fmuid,shenhe);
+    }
+
+
 }

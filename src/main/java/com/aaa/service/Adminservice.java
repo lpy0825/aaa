@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class Adminservice {
@@ -25,9 +26,9 @@ public class Adminservice {
      * 查询所有管理员
      * @return
      */
-    public List<admin> queryadmin()
+    public List<Map<String,Object>> queryadmin(int aid)
     {
-        return adao.queryadmin();
+        return adao.queryadmin(aid);
     }
 
 
