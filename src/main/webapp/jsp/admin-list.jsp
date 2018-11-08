@@ -57,6 +57,7 @@
       <th>签名</th>
       <th>信誉度</th>
       <th>审核状态</th>
+      <th>状态</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -121,7 +122,6 @@
               <i class="layui-icon">&#xe601;</i>
             </a>
           </c:if>
-
         </td>
       </tr>
     </c:forEach>

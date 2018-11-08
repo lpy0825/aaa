@@ -28,7 +28,21 @@ public interface FMuserdao {
     /*
     修改审核状态
      */
-    @Update("update fmuser set shenhe=#{shenhe} where Fmuid=#{fmuid}")
-    public int update_shenhe(@Param("fmuid") int fmuid,@Param("shenhe") int shenhe);
+    @Update("update fmuser set shenhe=#{shenhe},Fmanchor=#{fmanchor} where Fmuid=#{fmuid}")
+    public int update_shenhe(@Param("fmuid") int fmuid,@Param("shenhe") int shenhe,@Param("fmanchor") int fmanchor);
 
+
+
+    /*
+    按照id查询用户
+     */
+    @Select("select * from fmuser where fmuid=#{fmuid}")
+    public List<FMuser> queryfmuser_id(@Param("fmuid") Integer fmuid);
+
+
+    /*
+    查询信誉度低于100的
+     */
+    @Select("select * from fmuser where Fmcredibilty<100")
+    public List<FMuser> query_Fmcredibilty();
 }

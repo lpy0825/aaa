@@ -34,10 +34,26 @@ public class Fmuserservice {
     /*
     修改审核
      */
-    public int update_shenhe(int fmuid,int shenhe)
+    public int update_shenhe(int fmuid,int shenhe,int fmanchor)
     {
-        return  userdao.update_shenhe(fmuid,shenhe);
+        return  userdao.update_shenhe(fmuid,shenhe,fmanchor);
     }
 
 
+    /*
+    按照ID查询用户
+     */
+    public List<FMuser> queryfmuser_id(Integer fmuid)
+    {
+        return userdao.queryfmuser_id(fmuid);
+    }
+
+
+    /*
+    查询信誉度低于100的
+     */
+    public List<FMuser>query_Fmcredibilty()
+    {
+        return userdao.query_Fmcredibilty();
+    }
 }

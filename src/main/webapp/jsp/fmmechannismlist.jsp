@@ -161,7 +161,7 @@
         }
         else {
             layer.confirm('确认未通过吗？', function (index) {
-                window.location.replace('fmuser/update_shenhe?fmuid=' + id + '&shenhe=0');
+                window.location.replace('jsp/verifyno.jsp');
             })
 
         }
